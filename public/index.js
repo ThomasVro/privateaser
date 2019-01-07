@@ -147,6 +147,7 @@ const actors = [{
 }];
 
 //Step 1 Euro-People
+//Step 2 Discount
 
 function findbar(barId)
 {
@@ -168,7 +169,29 @@ function price_calculation()
     {
       var index_bar = findbar(events[i].barId);
       events[i].price = (events[i].time*bars[index_bar].pricePerHour) + (events[i].persons*bars[index_bar].pricePerPerson);
+      if(events[i].persons > 60)
+      {
+        events[i].price = events[i].price * 0.5;
+      }
+      else if (events[i].price  > 20)
+      {
+          events[i].price = events[i].price * 0.7;
+      }
+      else if (events[i].price  > 10)
+      {
+          events[i].price = events[i].price * 0.9;
+      }
     }
+}
+
+
+
+function discount()
+{
+  for(var i = 0; i<events.length; i++)
+  {
+
+  }
 }
 
 
