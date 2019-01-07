@@ -60,7 +60,7 @@ const events = [{
   'id': '94dab739-bd93-44c0-9be1-52dd07baa9f6',
   'booker': 'otacos',
   'barId': '6e06c9c0-4ab0-4d66-8325-c5fa60187cf8',
-  'distance': 5,
+  'time': 5,
   'persons': 80,
   'options': {
     'deductibleReduction': true
@@ -146,6 +146,34 @@ const actors = [{
   }]
 }];
 
+//Step 1 Euro-People
+
+function findbar(barId)
+{
+  var index = 0;
+  for(var i = 0; i<bars.length; i++)
+  {
+    if(barId == bars[i].id)
+    {
+      index = i;
+    }
+  }
+
+  return index;
+}
+
+function price_calculation()
+{
+    for(var i = 0; i < events.length; i++)
+    {
+      var index_bar = findbar(events[i].barId);
+      events[i].price = (events[i].time*bars[index_bar].pricePerHour) + (events[i].persons*bars[index_bar].pricePerPerson);
+    }
+}
+
+
+
 console.log(bars);
 console.log(events);
 console.log(actors);
+price_calculation();
