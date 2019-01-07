@@ -1,5 +1,5 @@
 'use strict';
-//Test
+
 //list of bats
 //useful for ALL 5 steps
 //could be an array of objects that you fetched from api or database
