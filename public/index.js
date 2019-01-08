@@ -172,27 +172,38 @@ function price_calculation()
       if(events[i].persons > 60)
       {
         events[i].price = events[i].price * 0.5;
+
+        var commission = events[i].price * 0.3;
+        events[i].insurance = commission * 0.5;
+        events[i].treasury = events[i].persons;
+        events[i].privateaser = events[i].price - (commission + events[i].insurance + events[i].treasury);
+
       }
       else if (events[i].price  > 20)
       {
-          events[i].price = events[i].price * 0.7;
-      }
+        events[i].price = events[i].price * 0.7;
+
+
+        var commission = events[i].price * 0.3;
+        events[i].insurance = commission * 0.5
+        events[i].treasury = events[i].persons;
+        events[i].privateaser = events[i].price - (commission + events[i].insurance + events[i].treasury);
+       }
+
       else if (events[i].price  > 10)
       {
-          events[i].price = events[i].price * 0.9;
-      }
+        events[i].price = events[i].price * 0.9;
+
+
+        var commission = events[i].price * 0.3;
+        events[i].insurance = commission * 0.5;
+        events[i].treasury = events[i].persons;
+        events[i].privateaser = events[i].price - (commission + events[i].insurance + events[i].treasury);      }
     }
 }
 
 
 
-function discount()
-{
-  for(var i = 0; i<events.length; i++)
-  {
-
-  }
-}
 
 
 
