@@ -166,45 +166,98 @@ function price_calculation()
     {
       var index_bar = findbar(events[i].barId);
       events[i].price = (events[i].time*bars[index_bar].pricePerHour) + (events[i].persons*bars[index_bar].pricePerPerson);
+
       if(events[i].persons > 60)
       {
         events[i].price = events[i].price * 0.5;
 
-        var commission = events[i].price * 0.3;
-        events[i].insurance = commission * 0.5;
-        events[i].treasury = events[i].persons;
-        events[i].privateaser = commission - (events[i].insurance + events[i].treasury);
+        if(events[i].options.deductibleReduction == true)
+        {
+          events[i].price = events[i].price + events[i].persons;
+          var commission_price = events[i].price * 0.3;
+          events[i].commission.insurance = commission_price * 0.5;
+          events[i].commission.treasury = events[i].persons;
+          events[i].commission.privateaser = commission_price - (events[i].commission.insurance + events[i].commission.treasury);
+        }
+        else
+        {
+          console.log(events[i].price);
+          events[i].price = events[i].price;
+          var commission_price = events[i].price * 0.3;
+          events[i].commission.insurance = commission_price * 0.5;
+          events[i].commission.treasury = events[i].persons;
+          events[i].commission.privateaser = commission_price - (events[i].commission.insurance + events[i].commission.treasury);
+        }
 
       }
-      else if (events[i].price  > 20)
+      else if (events[i].persons  > 20 && events[i].persons < 60)
       {
         events[i].price = events[i].price * 0.7;
 
+        if(events[i].deductibleReduction == true)
+        {
+          events[i].price = events[i].price + events[i].persons;
+          var commission_price = events[i].price * 0.3;
+          events[i].commission.insurance = commission_price * 0.5;
+          events[i].commission.treasury = events[i].persons;
+          events[i].commission.privateaser = commission_price - (events[i].commission.insurance + events[i].commission.treasury);
+        }
+        else
+        {
+          events[i].price = events[i].price;
+          var commission_price = events[i].price * 0.3;
+          events[i].commission.insurance = commission_price * 0.5;
+          events[i].commission.treasury = events[i].persons;
+          events[i].commission.privateaser = commission_price - (events[i].commission.insurance + events[i].commission.treasury);
+        }
 
-        var commission = events[i].price * 0.3;
-        events[i].insurance = commission * 0.5
-        events[i].treasury = events[i].persons;
-        events[i].privateaser = commission - (events[i].insurance + events[i].treasury);
        }
 
-      else if (events[i].price  > 10)
+      else if (events[i].persons  > 10 && events[i].persons < 20)
       {
         events[i].price = events[i].price * 0.9;
 
+        if(events[i].deductibleReduction == true)
+        {
+          events[i].price = events[i].price + events[i].persons;
+          var commission_price = events[i].price * 0.3;
+          events[i].commission.insurance = commission_price * 0.5;
+          events[i].commission.treasury = events[i].persons;
+          events[i].commission.privateaser = commission_price - (events[i].commission.insurance + events[i].commission.treasury);
+        }
+        else
+        {
+          events[i].price = events[i].price;
+          var commission_price = events[i].price * 0.3;
+          events[i].commission.insurance = commission_price * 0.5;
+          events[i].commission.treasury = events[i].persons;
+          events[i].commission.privateaser = commission_price - (events[i].commission.insurance + events[i].commission.treasury);
+        }
+    }
+    else
+    {
+      events[i].price = events[i].price;
 
-        var commission = events[i].price * 0.3;
-        events[i].insurance = commission * 0.5;
-        events[i].treasury = events[i].persons;
-        events[i].privateaser = commission - (events[i].insurance + events[i].treasury);
+      if(events[i].deductibleReduction == true)
+      {
+        events[i].price = events[i].price + events[i].persons;
+        var commission_price = events[i].price * 0.3;
+        events[i].commission.insurance = commission_price * 0.5;
+        events[i].commission.treasury = events[i].persons;
+        events[i].commission.privateaser = commission_price - (events[i].commission.insurance + events[i].commission.treasury);
+      }
+      else
+      {
+        events[i].price = events[i].price;
+        var commission_price = events[i].price * 0.3;
+        events[i].commission.insurance = commission_price * 0.5;
+        events[i].commission.treasury = events[i].persons;
+        events[i].commission.privateaser = commission_price - (events[i].commission.insurance + events[i].commission.treasury);
+      }
     }
 }
 
 }
-
-
-
-
-
 
 console.log(bars);
 console.log(events);
