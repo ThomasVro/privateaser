@@ -146,9 +146,6 @@ const actors = [{
   }]
 }];
 
-//Step 1 Euro-People
-//Step 2 Discount
-
 function findbar(barId)
 {
   var index = 0;
@@ -176,7 +173,7 @@ function price_calculation()
         var commission = events[i].price * 0.3;
         events[i].insurance = commission * 0.5;
         events[i].treasury = events[i].persons;
-        events[i].privateaser = events[i].price - (commission + events[i].insurance + events[i].treasury);
+        events[i].privateaser = commission - (events[i].insurance + events[i].treasury);
 
       }
       else if (events[i].price  > 20)
@@ -187,7 +184,7 @@ function price_calculation()
         var commission = events[i].price * 0.3;
         events[i].insurance = commission * 0.5
         events[i].treasury = events[i].persons;
-        events[i].privateaser = events[i].price - (commission + events[i].insurance + events[i].treasury);
+        events[i].privateaser = commission - (events[i].insurance + events[i].treasury);
        }
 
       else if (events[i].price  > 10)
@@ -198,8 +195,10 @@ function price_calculation()
         var commission = events[i].price * 0.3;
         events[i].insurance = commission * 0.5;
         events[i].treasury = events[i].persons;
-        events[i].privateaser = events[i].price - (commission + events[i].insurance + events[i].treasury);      }
+        events[i].privateaser = commission - (events[i].insurance + events[i].treasury);
     }
+}
+
 }
 
 
